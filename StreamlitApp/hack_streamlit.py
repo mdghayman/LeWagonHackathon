@@ -7,7 +7,8 @@ bool_to_int = {'False': 0, 'True': 1}
 result = None
 
 col1, col2, col3 = st.beta_columns(3)
-col2.image('images/LeWagonLogo.jpeg', use_column_width=True, output_format='JPEG')
+col2.image('images/LeWagonLogo.jpeg', use_column_width=True, \
+    output_format='JPEG')
 
 st.markdown("<h1 style='text-align: center; color: red;'>\
     Le Wagon Hackathon, 21 March 2021</h1>", unsafe_allow_html=True)
@@ -15,13 +16,16 @@ st.markdown("<h1 style='text-align: center; color: red;'>\
 col1, col2, col3 = st.beta_columns(3)
 col1.markdown("<h2 style='text-align: center; color: grey'>\
     Michael Hayman</h3>", unsafe_allow_html=True)
-col1.image('images/MichaelHayman.jpeg', use_column_width=True, output_format='JPEG')
+col1.image('images/MichaelHayman.jpeg', use_column_width=True, \
+    output_format='JPEG')
 col2.markdown("<h2 style='text-align: center; color: grey'>\
     Martin Clark</h3>", unsafe_allow_html=True)
-col2.image('images/MartinClark.jpeg', use_column_width=True, output_format='JPEG')
+col2.image('images/MartinClark.jpeg', use_column_width=True, \
+    output_format='JPEG')
 col3.markdown("<h2 style='text-align: center; color: grey'>\
     Karina Pacut</h3>", unsafe_allow_html=True)
-col3.image('images/KarinaPacut.jpeg', use_column_width=True, output_format='JPEG')
+col3.image('images/KarinaPacut.jpeg', use_column_width=True, \
+    output_format='JPEG')
 
 col2.image('images/TrayLogo.jpeg', use_column_width=True, output_format='JPEG')
 
@@ -85,7 +89,8 @@ st.markdown("<p style='text-align: center'>\
     This graph illustrates the APIs in the dataset, arranged in three groups \
     using a clustering algorithm. While shown here in two dimensions, it is \
     abstracted from six dimensions. APIs falling into group are most likely \
-    to suceed on Tray's platform.</p>", unsafe_allow_html=True)
+    to suceed on Tray's platform. Also represented in 3D here, because 3D \
+    graphs are fun. ;)</p>", unsafe_allow_html=True)
 
 st.image('images/pic.png', use_column_width=True, output_format='PNG')
 
@@ -94,3 +99,14 @@ st.markdown("<p style='text-align: center'>\
     unsafe_allow_html=True)
 
 st.image('images/3d_pic.png', use_column_width=True, output_format='PNG')
+
+st.markdown("<h2 style='text-align: center; color: grey'>\
+    Exploratory analysis:</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center'>\
+    The diagrams below illustrate correlation among the model's attributes, \
+    and the fitting of a decision tree to determine the value of the growing \
+    market attribute based on other attributes.</p>", unsafe_allow_html=True)
+
+col1, col2 = st.beta_columns(2)
+col1.image('images/correlation.png', use_column_width=True, output_format='PNG')
+col2.image('images/tray_tree.png', use_column_width=True, output_format='PNG')
