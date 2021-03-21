@@ -95,10 +95,10 @@ def build_graph(y_scaled):
         random_state=0).fit(df[features])
 
     plt.figure(figsize=(20, 9))
-    plot_gaussian_mixture(gm_for_pca_2dims, reduced, colours="turbo")
-    plt.scatter(y_scaled[0][0], y_scaled[0][1], c="g", marker="X", s=1000)
-    plt.scatter(y_scaled[0][0], y_scaled[0][1]+0.3, marker='$NEW API$', \
-        s=3000, c="g")
+    plot_gaussian_mixture(gm_for_pca_2dims, reduced, colours="Blues")
+    plt.scatter(y_scaled[0][0], y_scaled[0][3], c="r", marker="o", s=1000)
+    plt.scatter(y_scaled[0][0], y_scaled[0][3]+0.3, marker='$NEW API$', \
+        s=3000, c="r")
     plt.savefig('pic.png')
     plt.axis("off")
     plt.show()

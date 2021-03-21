@@ -67,7 +67,14 @@ if col2.button('Predict outcome for this API'):
         organic_search_volume,
         seo_value,
     ]]
-    y_scaled = StandardScaler().fit_transform(y)
+
+    df = pd.read_csv('data.csv')
+    scaler = StandardScaler()
+    features = ['Analyst value (0 - 5)', 'Partner value (0 - 5)',
+           'Persona value (0 - 5)', 'Growing market',
+           'Organic Search Volume', 'SEO Value (0 - 3)']
+    scaler.fit(df[features])
+    y_scaled = scaler.transform(y)
     loaded_model = pickle.load(open('model/gm_for_predicton_6dims.sav', 'rb'))
     result = loaded_model.predict(y)[0]
     build_graph(y_scaled)
