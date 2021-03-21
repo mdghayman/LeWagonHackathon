@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import streamlit as st
 import pickle
 from sklearn.preprocessing import StandardScaler
@@ -56,6 +57,7 @@ seo_value = st.slider(label="SEO value (0-3)", min_value=0, max_value=3)
 
 col1, col2, col3 = st.beta_columns(3)
 if col2.button('Predict outcome for this API'):
+    os.system("rm pic.png")
     new_graph = False
     y = [[
         analyst_value,
