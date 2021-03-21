@@ -99,5 +99,6 @@ def build_graph(y_scaled):
     plt.scatter(y_scaled[0][0], y_scaled[0][3], c="r", marker="o", s=1000)
     plt.scatter(y_scaled[0][0], y_scaled[0][3]+0.3, marker='$NEW API$', \
         s=3000, c="r")
+    plt.savefig('pic.png')
     plt.axis("off")
     plt.show()
