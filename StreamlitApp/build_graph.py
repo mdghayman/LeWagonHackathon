@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-#plotting 
+#plotting
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
@@ -47,7 +47,8 @@ def plot_decision_boundaries(clusterer, X, resolution=1000, show_centroids=True,
     else:
         plt.tick_params(labelleft=False)
 
-def plot_gaussian_mixture(clusterer, X, resolution=1000, show_ylabels=True, colours="PuBuGn"):
+def plot_gaussian_mixture(clusterer, X, resolution=1000, show_ylabels=True, \
+    colours="PuBuGn"):
     mins = X.min(axis=0) - 0.1
     maxs = X.max(axis=0) + 0.1
     xx, yy = np.meshgrid(np.linspace(mins[0], maxs[0], resolution),
@@ -67,7 +68,7 @@ def plot_gaussian_mixture(clusterer, X, resolution=1000, show_ylabels=True, colo
     Z = Z.reshape(xx.shape)
     plt.contour(xx, yy, Z,
                 linewidths=2, colors='r', linestyles='dashed')
-    
+
     plt.plot(X[:, 0], X[:, 1], 'k.', markersize=2)
     plot_centroids(clusterer.means_, clusterer.weights_)
 
@@ -76,51 +77,28 @@ def plot_gaussian_mixture(clusterer, X, resolution=1000, show_ylabels=True, colo
         plt.ylabel("$x_2$", fontsize=14, rotation=0)
     else:
         plt.tick_params(labelleft=False)
-        
-        
-df = pd.read_csv('data.csv') #<<<< Data as csv 
-df.drop(columns="Competitive gap", inplace=True)
 
-features = ['Analyst value (0 - 5)', 'Partner value (0 - 5)',
-       'Persona value (0 - 5)', 'Growing market',
-       'Organic Search Volume', 'SEO Value (0 - 3)']      
-scaler = StandardScaler()
-df[features] = scaler.fit_transform(df[features])
- 
-pca = PCA(n_components=2)
-reduced = pca.fit_transform(df[features])
-gm_for_pca_2dims = GaussianMixture(n_components=3, n_init=10, random_state=0).fit(reduced)
-gm_for_predicton_6dims = GaussianMixture(n_components=3, n_init=10, random_state=0).fit(df[features])
+def build_graph(y_scaled):
+    df = pd.read_csv('data.csv') #<<<< Data as csv
+    df.drop(columns="Competitive gap", inplace=True)
 
+    features = ['Analyst value (0 - 5)', 'Partner value (0 - 5)',
+           'Persona value (0 - 5)', 'Growing market',
+           'Organic Search Volume', 'SEO Value (0 - 3)']
+    df[features] = StandardScaler().fit_transform(df[features])
 
-###############################
-#    User input
-###############################
+    pca = PCA(n_components=2)
+    reduced = pca.fit_transform(df[features])
+    gm_for_pca_2dims = GaussianMixture(n_components=3, n_init=10, \
+        random_state=0).fit(reduced)
+    gm_for_predicton_6dims = GaussianMixture(n_components=3, n_init=10, \
+        random_state=0).fit(df[features])
 
-input_name = "NEW API"
-y = [[0, 1, 3, 0, 1161, 2]]##< example user input
-
-################################
-#    Predictions
-################################
-
-y_scaled = scaler.transform(y)
-yhat = gm_for_predicton_6dims.predict(y_scaled)[0]
-
-################################
-#    Plotting 
-###############################
-responses = [ "0>>> Not so sure about this one 😐️",
-              "1>>> It’s a 🦄! This api has a good chance of increasing traffic.",
-              "2>>> This one is probably not going to do so well🥶"]
-
-
-print("Predictions:",responses[yhat])
-
-plt.figure(figsize=(20, 9))
-plot_gaussian_mixture(gm_for_pca_2dims, reduced, colours="turbo")
-plt.scatter(y_scaled[0][0], y_scaled[0][1], c="g", marker="X", s=1000)
-plt.scatter(y_scaled[0][0], y_scaled[0][1]+0.3, marker=f'${input_name}$', s=3000, c="g")
-plt.savefig('pic.png')
-plt.axis("off")
-plt.show()
+    plt.figure(figsize=(20, 9))
+    plot_gaussian_mixture(gm_for_pca_2dims, reduced, colours="turbo")
+    plt.scatter(y_scaled[0][0], y_scaled[0][1], c="g", marker="X", s=1000)
+    plt.scatter(y_scaled[0][0], y_scaled[0][1]+0.3, marker='$NEW API$', \
+        s=3000, c="g")
+    plt.savefig('pic.png')
+    plt.axis("off")
+    plt.show()

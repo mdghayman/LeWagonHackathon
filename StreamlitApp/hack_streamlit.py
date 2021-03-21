@@ -1,10 +1,11 @@
 import pandas as pd
 import streamlit as st
-from sklearn.preprocessing import StandardScaler
 import pickle
+from sklearn.preprocessing import StandardScaler
+from build_graph import build_graph
 
 bool_to_int = {'False': 0, 'True': 1}
-result = None
+result, new_graph = None, False
 
 col1, col2, col3 = st.beta_columns(3)
 col2.image('images/LeWagonLogo.jpeg', use_column_width=True, \
@@ -50,35 +51,37 @@ persona_value = st.slider(label="Persona value (0-5)", \
     min_value=0, max_value=5)
 growing_market = st.select_slider(label="Growing market", \
     options=['True', 'False'])
-seo_value = st.slider(label="SEO value (0-3)", min_value=0, max_value=3)
 organic_search_volume = st.number_input(label="Organic search volume")
+seo_value = st.slider(label="SEO value (0-3)", min_value=0, max_value=3)
 
 col1, col2, col3 = st.beta_columns(3)
 if col2.button('Predict outcome for this API'):
+    new_graph = False
     y = [[
         analyst_value,
         partner_value,
         persona_value,
         bool_to_int[growing_market],
-        seo_value,
         organic_search_volume,
+        seo_value,
     ]]
     y_scaled = StandardScaler().fit_transform(y)
     loaded_model = pickle.load(open('model/gm_for_predicton_6dims.sav', 'rb'))
     result = loaded_model.predict(y)[0]
+    build_graph(y_scaled)
+    new_graph = True
 
-if result == 0:
-    st.markdown("<p style='text-align: center'>\
-        Result:<br>This is a <b>failure</b>.<br>The API falls into Group 0 \
-        (see below).</p>", unsafe_allow_html=True)
-elif result == 1:
-    st.markdown("<p style='text-align: center'>\
-        Result:<br>This is a <b>unicorn</b>.<br>The API falls into Group 1 \
-        (see below).</p>", unsafe_allow_html=True)
-elif result in [0, 2]:
-    st.markdown("<p style='text-align: center'>\
-        Result:<br>This is a <b>failure</b>.<br>The API falls into Group 2 \
-        (see below).</p>", unsafe_allow_html=True)
+responses = [
+    "0>>> Not so sure about this one 😐️",
+    "1>>> It’s a 🦄! This api has a good chance of increasing traffic.",
+    "2>>> This one is probably not going to do so well🥶",
+]
+
+if result in [0, 1, 2]:
+    st.markdown(f"<p style='text-align: center'>Result:<br>\
+        {responses[result]}</p>", unsafe_allow_html=True)
+    if new_graph:
+        st.image('pic.png', use_column_width=True, output_format='PNG')
 else:
     st.markdown("<p style='text-align: center'>\
         Please enter valid inputs above.</p>", unsafe_allow_html=True)
