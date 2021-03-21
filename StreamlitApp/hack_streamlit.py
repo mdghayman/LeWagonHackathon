@@ -7,7 +7,7 @@ bool_to_int = {'False': 0, 'True': 1}
 result = None
 
 col1, col2, col3 = st.beta_columns(3)
-col2.image('LeWagonLogo.jpeg', use_column_width=True, output_format='JPEG')
+col2.image('images/LeWagonLogo.jpeg', use_column_width=True, output_format='JPEG')
 
 st.markdown("<h1 style='text-align: center; color: red;'>\
     Le Wagon Hackathon, 21 March 2021</h1>", unsafe_allow_html=True)
@@ -15,15 +15,15 @@ st.markdown("<h1 style='text-align: center; color: red;'>\
 col1, col2, col3 = st.beta_columns(3)
 col1.markdown("<h2 style='text-align: center; color: grey'>\
     Michael Hayman</h3>", unsafe_allow_html=True)
-col1.image('MichaelHayman.jpeg', use_column_width=True, output_format='JPEG')
+col1.image('images/MichaelHayman.jpeg', use_column_width=True, output_format='JPEG')
 col2.markdown("<h2 style='text-align: center; color: grey'>\
     Martin Clark</h3>", unsafe_allow_html=True)
-col2.image('MartinClark.jpeg', use_column_width=True, output_format='JPEG')
+col2.image('images/MartinClark.jpeg', use_column_width=True, output_format='JPEG')
 col3.markdown("<h2 style='text-align: center; color: grey'>\
     Karina Pacut</h3>", unsafe_allow_html=True)
-col3.image('KarinaPacut.jpeg', use_column_width=True, output_format='JPEG')
+col3.image('images/KarinaPacut.jpeg', use_column_width=True, output_format='JPEG')
 
-col2.image('TrayLogo.jpeg', use_column_width=True, output_format='JPEG')
+col2.image('images/TrayLogo.jpeg', use_column_width=True, output_format='JPEG')
 
 st.markdown("<h2 style='text-align: center; color: grey'>\
     Tray.io challenge:</h2>", unsafe_allow_html=True)
@@ -60,7 +60,7 @@ if col2.button('Predict outcome for this API'):
         organic_search_volume,
     ]]
     y_scaled = StandardScaler().fit_transform(y)
-    loaded_model = pickle.load(open('gm_for_predicton_6dims.sav', 'rb'))
+    loaded_model = pickle.load(open('model/gm_for_predicton_6dims.sav', 'rb'))
     result = loaded_model.predict(y)[0]
 
 if result == 0:
@@ -87,10 +87,10 @@ st.markdown("<p style='text-align: center'>\
     abstracted from six dimensions. APIs falling into group are most likely \
     to suceed on Tray's platform.</p>", unsafe_allow_html=True)
 
-st.image('pic.png', use_column_width=True, output_format='PNG')
+st.image('images/pic.png', use_column_width=True, output_format='PNG')
 
 st.markdown("<p style='text-align: center'>\
     Represented again here, because 3D graphs are fun. ;)</p>", \
     unsafe_allow_html=True)
 
-st.image('3d_pic.png', use_column_width=True, output_format='PNG')
+st.image('images/3d_pic.png', use_column_width=True, output_format='PNG')
