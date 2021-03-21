@@ -32,14 +32,14 @@ col3.image('images/KarinaPacut.jpeg', use_column_width=True, \
 col2.image('images/TrayLogo.jpeg', use_column_width=True, output_format='JPEG')
 
 st.markdown("<h2 style='text-align: center; color: grey'>\
-    Tray.io challenge:</h2>", unsafe_allow_html=True)
+    Tray.io challenge</h2>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center'>\
     Algorithmically predict the SaaS product that will generate more interest \
     and traffic, to proactively create integrations for unicorns.</p>", \
     unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align: center; color: grey'>\
-    Input:</h2>", unsafe_allow_html=True)
+    Input</h2>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center'>\
     To predict whether your new API will be successful, please fill in \
     the details below:</p>", unsafe_allow_html=True)
@@ -89,13 +89,12 @@ else:
         Please enter valid inputs above.</p>", unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align: center; color: grey'>\
-    Groupings:</p>", unsafe_allow_html=True)
+    Groupings</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center'>\
     This graph illustrates the APIs in the dataset, arranged in three groups \
     using a clustering algorithm. While shown here in two dimensions, it is \
     abstracted from six dimensions. APIs falling into group are most likely \
-    to suceed on Tray's platform. Also represented in 3D here, because 3D \
-    graphs are fun. ;)</p>", unsafe_allow_html=True)
+    to suceed on Tray's platform.</p>", unsafe_allow_html=True)
 
 st.image('images/pic.png', use_column_width=True, output_format='PNG')
 
@@ -106,7 +105,18 @@ st.markdown("<p style='text-align: center'>\
 st.image('images/3d_pic.png', use_column_width=True, output_format='PNG')
 
 st.markdown("<h2 style='text-align: center; color: grey'>\
-    Exploratory analysis:</p>", unsafe_allow_html=True)
+    How to understand these groupings</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center'>\
+    The graphs below show the average perfomance of the three groups, in \
+    Organic search volume and Average SEO value respectively.</p>", \
+    unsafe_allow_html=True)
+
+col1, col2 = st.beta_columns(2)
+col1.image('images/graph01.png', use_column_width=True, output_format='PNG')
+col2.image('images/graph02.png', use_column_width=True, output_format='PNG')
+
+st.markdown("<h2 style='text-align: center; color: grey'>\
+    Exploratory analysis</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center'>\
     The diagrams below illustrate correlation among the model's attributes, \
     and the fitting of a decision tree to determine the value of the growing \
