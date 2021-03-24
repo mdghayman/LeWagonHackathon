@@ -8,5 +8,6 @@ scipy
 joblib
 threadpoolctl
 scikit-learn
+sklearn
 os
 pickle
