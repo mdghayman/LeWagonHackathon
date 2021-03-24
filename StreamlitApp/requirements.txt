@@ -4,6 +4,6 @@ wheel>=0.29
 pandas
 numpy
 matplotlib
-sklearn
+scikit-learn
 os
 pickle
