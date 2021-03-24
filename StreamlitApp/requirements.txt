@@ -4,6 +4,9 @@ wheel>=0.29
 pandas
 numpy
 matplotlib
+scipy
+joblib
+threadpoolctl
 scikit-learn
 os
 pickle
