@@ -5,10 +5,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
-#sklearn
-from sklearn.decomposition import PCA
-from sklearn.mixture import GaussianMixture
-from sklearn.preprocessing import StandardScaler
+#scikit-learn
+from scikit-learn.decomposition import PCA
+from scikit-learn.mixture import GaussianMixture
+from scikit-learn.preprocessing import StandardScaler
 
 def plot_data(X):
     plt.plot(X[:, 0], X[:, 1], 'k.', markersize=2)

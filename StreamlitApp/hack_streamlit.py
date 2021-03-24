@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import streamlit as st
 import pickle
-from sklearn.preprocessing import StandardScaler
+from scikit-learn.preprocessing import StandardScaler
 from build_graph import build_graph
 
 bool_to_int = {'False': 0, 'True': 1}
